@@ -1,0 +1,154 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Card {
+private:
+    bool active;
+    double balance;
+    int pin;
+
+    bool checkActive() {
+        if ( !active )
+            cout << "Card Service Suspended, please contact bank hotline for help" << endl;
+        return active;
+    }
+
+    bool checkPinMatch(int pin) {
+        if ( this->pin != pin )
+            cout << "Incorrect Pin, action cancelled!" << endl;
+        return this->pin == pin;
+    }
+
+public:
+    Card(bool active, double balance, int pin) {
+        this->active = active;
+        this->balance = balance;
+        this->pin = pin;
+    }
+
+    bool withdraw(int amount, int pin) {
+        if ( !checkActive() || !checkPinMatch(pin) ) {
+            return false;
+        }
+
+        if ( amount <= 0 ) {
+            cout << "Invalid withdraw amount, should be larger than 0, withdraw cancelled!" << endl;
+        }
+
+        bool success = true;
+        if ( balance >= amount ) {
+            balance -= amount;
+            cout << "Withdraw $" << amount << ", updated balance: $" << balance << endl;
+        } else {
+            success = false;
+            cout << "Withdraw $" << amount << ", balance: $" << balance << ", not enough balance, withdraw cancelled!" << endl;
+        }
+
+        return success;
+    }
+
+    bool deposit(int amount) {
+        if ( !checkActive() ) {
+            return false;
+        }
+
+        if ( amount <= 0 ) {
+            cout << "Invalid deposit amount, should be larger than 0, deposit cancelled!" << endl;
+        }
+
+        balance += amount;
+        cout << "Deposit $" << amount << ", updated balance: $" << balance << endl;
+
+        return true;
+    }
+};
+
+
+class ATM {
+private:
+    bool inService;
+    string location;
+
+    bool checkInService() {
+        if ( !inService )
+            cout << "ATM Out-of-service, action cancelled!" << endl;
+        return inService;
+    }
+
+public:
+    ATM(bool inService, string location) {
+        this->inService = inService;
+        this->location = location;
+    }
+
+    ATM() {
+        this->inService = false;
+        this->location = "N/A";
+    }
+
+    bool withdraw(Card* card, int amount, int pin) {
+        if ( !checkInService() )
+            return false;
+        return card->withdraw(amount, pin);
+    }
+
+    bool deposit(Card* card, int amount) {
+        if ( !checkInService() )
+            return false;
+        return card->deposit(amount);
+    }
+};
+
+
+int main(int argc, char* argv[]) {
+
+    Card cardInactive = Card(false, 100.0, 123456);
+    Card cardNormal = Card(true, 100.0, 123456);
+    Card cardNoMoney = Card(true, 0.0, 123456);
+    
+    ATM atmNormal = ATM(true, "HK");
+    ATM atmOutOfService = ATM();
+
+    cout << " 1: Withdraw $10 with Card:cardInactive on ATM:atmNormal" << endl;
+    atmNormal.withdraw(&cardInactive, 10, 123456);
+
+    cout << endl << " 2: Withdraw $101 with Card:cardNormal on ATM:atmNormal" << endl;
+    atmNormal.withdraw(&cardNormal, 101, 000);
+
+    cout << endl << " 3: Withdraw $10 with Card:cardNormal on ATM:atmNormal" << endl;
+    atmNormal.withdraw(&cardNormal, 10, 123456);
+
+    cout << endl << " 4: Withdraw $10 with Card:cardNoMoney on ATM:atmNormal" << endl;
+    atmNormal.withdraw(&cardNoMoney, 10, 123456);
+
+    cout << endl << " 5: Withdraw $10 with Card:cardInactive on ATM:atmOutOfService" << endl;
+    atmOutOfService.withdraw(&cardInactive, 10, 123456);
+
+    cout << endl << " 6: Withdraw $10 with Card:cardNormal on ATM:atmOutOfService" << endl;
+    atmOutOfService.withdraw(&cardNormal, 10, 123456);
+
+    cout << endl << " 7: Withdraw $10 with Card:cardNoMoney on ATM:atmOutOfService" << endl;
+    atmOutOfService.withdraw(&cardNoMoney, 10, 123456);
+
+    cout << endl << " 8: Deposit $10 with Card:cardInactive on ATM:atmNormal" << endl;
+    atmNormal.deposit(&cardInactive, 10);
+
+    cout << endl << " 9: Deposit $10 with Card:cardNormal on ATM:atmNormal" << endl;
+    atmNormal.deposit(&cardNormal, 10);
+
+    cout << endl << "10: Deposit $10 with Card:cardNoMoney on ATM:atmNormal" << endl;
+    atmNormal.deposit(&cardNoMoney, 10);
+
+    cout << endl << "11: Deposit $10 with Card:cardInactive on ATM:atmOutOfService" << endl;
+    atmOutOfService.deposit(&cardInactive, 10);
+
+    cout << endl << "12: Deposit $10 with Card:cardNormal on ATM:atmOutOfService" << endl;
+    atmOutOfService.deposit(&cardNormal, 10);
+
+    cout << endl << "13: Deposit $10 with Card:cardNoMoney on ATM:atmOutOfService" << endl;
+    atmOutOfService.deposit(&cardNoMoney, 10);
+    
+    return 0;
+}

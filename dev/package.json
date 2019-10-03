@@ -1,0 +1,21 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-plugin-preval": "^3.0.1",
+    "next": "9.0.3",
+    "node": "^12.8.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
