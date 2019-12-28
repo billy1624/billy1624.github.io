@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "billy1624.github.io/react-begin/static/css/main.bf13b2b3.chunk.css",
+    "main.js": "billy1624.github.io/react-begin/static/js/main.ac6b9608.chunk.js",
+    "main.js.map": "billy1624.github.io/react-begin/static/js/main.ac6b9608.chunk.js.map",
+    "runtime-main.js": "billy1624.github.io/react-begin/static/js/runtime-main.5f4e2f49.js",
+    "runtime-main.js.map": "billy1624.github.io/react-begin/static/js/runtime-main.5f4e2f49.js.map",
+    "static/js/2.b244dbb3.chunk.js": "billy1624.github.io/react-begin/static/js/2.b244dbb3.chunk.js",
+    "static/js/2.b244dbb3.chunk.js.map": "billy1624.github.io/react-begin/static/js/2.b244dbb3.chunk.js.map",
+    "index.html": "billy1624.github.io/react-begin/index.html",
+    "precache-manifest.2212430d05d33459fb6834603a5c5d73.js": "billy1624.github.io/react-begin/precache-manifest.2212430d05d33459fb6834603a5c5d73.js",
+    "service-worker.js": "billy1624.github.io/react-begin/service-worker.js",
+    "static/css/main.bf13b2b3.chunk.css.map": "billy1624.github.io/react-begin/static/css/main.bf13b2b3.chunk.css.map",
+    "static/js/2.b244dbb3.chunk.js.LICENSE": "billy1624.github.io/react-begin/static/js/2.b244dbb3.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5f4e2f49.js",
+    "static/js/2.b244dbb3.chunk.js",
+    "static/css/main.bf13b2b3.chunk.css",
+    "static/js/main.ac6b9608.chunk.js"
+  ]
+}
