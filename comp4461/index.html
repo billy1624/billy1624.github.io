@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="tip.js"></script>
+    <script src="BubbleChart.js"></script>
+</head>
+
+<body>
+    <div class="container-fuild">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <svg id="usa_map"></svg>
+                <div id="legend1"></div>
+            </div>
+            <div class="col-md-3">
+                <div class="airport-detail card">
+                    <div class="card-body airport-detail-msg">
+                        <p>Click on the map to view airport details.</p>
+                    </div>
+                    <div class="card-body  airport-detail-body" style="display:none;">
+                        <h5 class="card-title"><span id="airport-detail-name"></span></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
+                                id="airport-detail-efficiency_score"></span> / 100</h6>
+                        <div class="card-header"><b>Airport Info</b></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Iso Region:</b> <span
+                                    id="airport-detail-iso_region"></span><br></li>
+                            <li class="list-group-item"><b>Code:</b> <span id="airport-detail-code"></span><br></li>
+                            <li class="list-group-item"><b>Icao_code:</b> <span
+                                    id="airport-detail-icao_code"></span><br></li>
+                            <li class="list-group-item"><b>Elevation ft:</b> <span
+                                    id="airport-detail-elevation_ft"></span><br></li>
+                            <li class="list-group-item"><b>Lat:</b> <span id="airport-detail-lat"></span><br></li>
+                            <li class="list-group-item"><b>Lon:</b> <span id="airport-detail-lon"></span><br></li>
+                        </ul>
+                        <div class="card-header"><b>Flight Statistics</b></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Annual Number of Arrival:</b> <span
+                                    id="airport-detail-annual_dest"></span><br></li>
+                            <li class="list-group-item"><b>Annual Number of Departure:</b> <span
+                                    id="airport-detail-annual_origin"></span><br></li>
+                            <li class="list-group-item"><b>Average Arrival Delay:</b> <span
+                                    id="airport-detail-average_arr_delay"></span>mins<br></li>
+                            <li class="list-group-item"><b>Average Departure Delay:</b> <span
+                                    id="airport-detail-average_dep_delay"></span>mins<br></li>
+                            <li class="list-group-item"><b>Cancellation Rate:</b> <span
+                                    id="airport-detail-cancellation_rate"></span>%<br></li>
+                        </ul>
+                        <div class="card-header"><b>Cause of Delay</b></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Nas Delay:</b> <span
+                                    id="airport-detail-nas_delay"></span>%<br></li>
+                            <li class="list-group-item"><b>Security Delay:</b> <span
+                                    id="airport-detail-security_delay"></span>%<br></li>
+                            <li class="list-group-item"><b>Carrier Delay:</b> <span
+                                    id="airport-detail-carrier_delay"></span>%<br></li>
+                            <li class="list-group-item"><b>Late_aircraft Delay:</b> <span
+                                    id="airport-detail-late_aircraft_delay"></span>%<br></li>
+                            <li class="list-group-item"><b>Weather Delay:</b> <span
+                                    id="airport-detail-weather_delay"></span>%<br></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bubbleChart"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Add 2 buttons -->
+                <button onclick="update('q1_num')">Jan-Mar</button>
+                <button onclick="update('q2_num')">Apr-Jun</button>
+                <button onclick="update('q3_num')">Jul-Sep</button>
+                <button onclick="update('q4_num')">Oct-Dec</button>
+
+                <!-- Create a div where the graph will take place -->
+                <div id="Quarter_compare"></div>
+                hello hi
+                <button onclick="update_2('AA')">AA</button>
+                <button onclick="update_2('AS')">AS</button>
+                <button onclick="update_2('B6')">B6</button>
+                <button onclick="update_2('DL')">DL</button>
+                <button onclick="update_2('EV')">EV</button>
+                <button onclick="update_2('F9')">F9</button>
+                <button onclick="update_2('HA')">HA</button>
+                <button onclick="update_2('MQ')">MQ</button>
+                <button onclick="update_2('NK')">NK</button>
+                <button onclick="update_2('OO')">OO</button>
+                <button onclick="update_2('UA')">UA</button>
+                <button onclick="update_2('US')">US</button>
+                <button onclick="update_2('VX')">VX</button>
+                <button onclick="update_2('WN')">WN</button>
+
+                <div id="airline_prob"></div>
+                <svg width="600" height="500" id="test"></svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .mappath {
+        stroke: #444444;
+        stroke-width: 0.1rem;
+        fill: #DDDDDD;
+        opacity: 0.2;
+    }
+
+    .spot {
+        /* fill: black; */
+        opacity: 0.5;
+    }
+
+    .tool-tip {
+        font-size: 12px;
+        padding: 6px;
+        background: black;
+        color: #fff;
+        border-radius: 10px;
+    }
+
+    .airport-detail {}
+
+    .list-group-item {
+        padding: 5px;
+    }
+
+    .card-header {
+        margin-top: 15px;
+        padding: 12px 5px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #legend1 {
+        text-align: center;
+    }
+</style>
+
+<script>
+    offsetX = 0;
+    offsetY = 0;
+    mapWidth = 1600;
+    mapHeight = 1050;
+
+    projection = d3.geoAlbersUsa().translate([mapWidth / 2, mapHeight / 2]).scale([mapWidth * 1.28]);
+
+    //Set map to be responsive
+    let usa_map = d3.select("#usa_map").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", offsetX + " " + offsetY + " " + mapWidth + " " + mapHeight)
+
+    //draw map
+    let path = d3.geoPath().projection(projection);
+
+    let pathgroup = usa_map.append("g").attr("id", "path");
+
+    d3.json("us-states.json", function (json) {
+        pathgroup.selectAll("path")
+            .data(json.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("class", "mappath");
+    });
+
+    let legendgroup = usa_map.append("g")
+        .attr("id", "maplegend")
+        .attr("transform", "translate(" + mapWidth * 0.9 + "," + mapHeight * 0.7 + ")");
+
+    var colors = d3.scaleLinear()
+        .domain([0, 100])
+        .range(["red", "green"]);
+
+    let linearSize = d3.scaleOrdinal().domain([""]).range([0]);
+
+    let legendSize = d3.legendSize()
+        .scale(linearSize)
+        .shape('circle')
+        .shapePadding(20)
+        .labelOffset(10)
+        .orient('vertical');
+
+    legendgroup.call(legendSize);
+
+    d3.csv("airport_data.csv", function (error, airports) {
+        airportsmap = {};
+
+        for (let i = 0; i < airports.length; i++) {
+            if (projection([airports[i].lon, airports[i].lat]) == null) {
+                airports.splice(i--, 1);
+            }
+            else {
+                airportsmap[airports[i].iata_code] = projection([airports[i].lon, airports[i].lat]);
+            }
+        }
+
+        let usa_map = d3.select("#usa_map");
+
+        let tip = d3.tip()
+            .attr('class', 'tool-tip')
+            .offset([-10, 0])
+            .html(function (d) {
+                return "<b>" + d.name + "</b></br>" + d.municipality + ", " + d.iso_region;
+            })
+        usa_map.call(tip);
+
+        usa_map.select("#spots").remove();
+        usa_map.select("#routes").remove();
+
+        let spotsGroup = usa_map.append("g").attr("id", "spots");
+        let spots = spotsGroup.selectAll("circle").data(airports);
+
+        spots.enter().append("circle")
+            .attr("cx", function (d) {
+                return projection([d.lon, d.lat])[0];
+            })
+            .attr("cy", function (d) {
+                return projection([d.lon, d.lat])[1];
+            })
+            .attr("r", function (d) {
+                return 10;
+            })
+            .attr("fill", function (d) {
+                return colors(d.efficiency_score);
+            })
+            .attr("class", "spot")
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide)
+            .on("click", function (d) {
+                // console.log(d);
+                $('span#airport-detail-name').text(d.name);
+                $('span#airport-detail-municipality').text(d.municipality);
+                $('span#airport-detail-efficiency_score').text(d.efficiency_score);
+                $('span#airport-detail-iso_region').text(d.iso_region);
+                $('span#airport-detail-code').text(d.code);
+                $('span#airport-detail-icao_code').text(d.icao_code);
+                $('span#airport-detail-elevation_ft').text(d.elevation_ft);
+                $('span#airport-detail-30mins_arr_delay').text(d['30mins_arr_delay']);
+                $('span#airport-detail-30mins_dep_delay').text(d['30mins_dep_delay']);
+                $('span#airport-detail-annual_dest').text(d.annual_dest);
+                $('span#airport-detail-annual_origin').text(d.annual_origin);
+                $('span#airport-detail-average_arr_delay').text(d.average_arr_delay);
+                $('span#airport-detail-average_dep_delay').text(d.average_dep_delay);
+                $('span#airport-detail-cancellation_rate ').text(d.cancellation_rate);
+                $('span#airport-detail-lat').text(d.lat);
+                $('span#airport-detail-lon').text(d.lon);
+                $('span#airport-detail-nas_delay').text(d.nas_delay);
+                $('span#airport-detail-security_delay').text(d.security_delay);
+                $('span#airport-detail-carrier_delay').text(d.carrier_delay);
+                $('span#airport-detail-late_aircraft_delay').text(d.late_aircraft_delay);
+                $('span#airport-detail-weather_delay').text(d.weather_delay);
+                $('div.airport-detail-msg').hide();
+                $('div.airport-detail-body').show();
+            });
+    });
+
+    var w = 500, h = 50;
+
+    var key = d3.select("#legend1")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    var legend = key.append("defs")
+        .append("svg:linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "0%")
+        .attr("y1", "100%")
+        .attr("x2", "100%")
+        .attr("y2", "100%")
+        .attr("spreadMethod", "pad");
+
+    legend.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "red")
+        .attr("stop-opacity", 1);
+
+    legend.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "green")
+        .attr("stop-opacity", 1);
+
+    key.append("rect")
+        .attr("width", w)
+        .attr("height", h - 30)
+        .style("fill", "url(#gradient)")
+        .attr("transform", "translate(0,10)");
+
+    var y = d3.scaleLinear()
+        .range([0, w])
+        .domain([0, 100]);
+
+    var yAxis = d3.axisBottom()
+        .scale(y)
+        .ticks(5);
+
+    key.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(0,30)")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("axis title");
+
+</script>
+
+<!--First Graph-->
+<script>
+    // set the dimensions and margins of the graph
+    var margin = { top: 30, right: 30, bottom: 70, left: 60 },
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#Quarter_compare")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Initialize the X axis
+    var x = d3.scaleBand()
+        .range([0, width])
+        .padding(0.2);
+    var xAxis = svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+
+    // Initialize the Y axis
+    var y = d3.scaleLinear()
+        .range([height, 0]);
+    var yAxis = svg.append("g")
+        .attr("class", "myYaxis")
+
+
+    // A function that create / update the plot for a given variable:
+    function update(selectedVar) {
+
+        // Parse the Data
+        d3.csv("flight_delay_in_q.csv", function (data) {
+
+            // X axis
+            x.domain(data.map(function (d) { return d.OP_CARRIER; }))
+            xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+            // Add Y axis
+            y.domain([0, d3.max(data, function (d) { return +d[selectedVar] })]);
+            yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+            // variable u: map data to existing bars
+            var u = svg.selectAll("rect")
+                .data(data)
+
+            // update bars
+            u
+                .enter()
+                .append("rect")
+                .merge(u)
+                .transition()
+                .duration(1000)
+                .attr("x", function (d) { return x(d.OP_CARRIER); })
+                .attr("y", function (d) { return y(d[selectedVar]); })
+                .attr("width", x.bandwidth())
+                .attr("height", function (d) { return height - y(d[selectedVar]); })
+                .attr("fill", "#69b3a2")
+        })
+
+    }
+
+    // Initialize plot
+    update('q1_num')
+
+</script>
+
+
+<!--Second Graph-->
+<script>
+
+    var svg_2 = d3.select("#test"),
+        margin_2 = 200,
+        width_2 = svg_2.attr("width") - margin_2,
+        height_2 = svg_2.attr("height") - margin_2;
+
+
+
+    var g_2 = svg_2.append("g")
+        .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+
+    var xScale = d3.scaleBand()
+        .domain(["Jan-Mar", "Apr-Jun", "Jul-Sep", "Oct-Dec"])
+        .range([0, width_2]);
+
+    var yScale = d3.scaleLinear()
+        .domain([0, 100000])
+        .range([height_2, 0]);
+
+
+
+    //create / update the plot for a given variable:
+    function update_2(selectedVar) {
+
+        // Parse the Data
+        // Initialize the X axis
+
+
+
+        d3.csv("flight_delay_in_q.csv", function (data) {
+
+            var i = data.length;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].OP_CARRIER == selectedVar) {
+                    console.log(data[i]);
+                    var total_flight = data[i].Total_flight;
+                    var total_delay = Number(data[i].q1_num) + Number(data[i].q2_num) + Number(data[i].q3_num) + Number(data[i].q3_num) + Number(data[i].q4_num);
+                    console.log(total_flight);
+                    var airline_data = [Number(data[i].q1_num), Number(data[i].q2_num), Number(data[i].q3_num), Number(data[i].q4_num)];
+                    var quar = ["Jan-Mar", "Apr-Jun", "Jul-Sep", "Oct-Dec"];
+                    console.log(airline_data);
+
+
+                    console.log("hihi");
+                    console.log(xScale("Apr-Jun"));
+
+
+
+                    g_2.append("g")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(d3.axisBottom(xScale));
+
+                    g_2.append("g")
+                        .call(d3.axisLeft(yScale).tickFormat(function (d) {
+                            return d;
+                        }).ticks(10));
+
+
+                    var u_2 = svg_2.selectAll("rect")
+                        .data(airline_data)
+
+                    // update bars
+                    u_2
+                        .enter().append("rect")
+                        .merge(u_2)
+                        .transition()
+                        .duration(1000)
+                        .attr("class", "bar")
+                        .attr("x", function (d, j) { return xScale(quar[j]) + 125; })
+                        .attr("y", function (d) { ; return yScale(d) + 100; })
+                        .attr("width", xScale.bandwidth() / 2)
+                        .attr("height", function (d) { return height_2 - yScale(d); })
+                        .attr("fill", "#69b3a2")
+
+                    document.getElementById("airline_prob").innerHTML = "AIRLINE: " + selectedVar + "<br>";
+
+                    var HTML = "<table border=1 width=100%><tr><th>Quarter</th><th>probability(%)</th></tr>";
+                    HTML += " <tr><td>Jan - Mar delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q1_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += " <tr><td>Apr - Jun delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q2_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += " <tr><td>Jul - Sep delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q3_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += " <tr><td>Oct - Dec delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q4_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+
+                    HTML += " <tr><td>Total probability";
+                    HTML += "</td><td>" + Math.round((total_delay / total_flight) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += "</table>";
+                    document.getElementById("airline_prob").innerHTML += HTML;
+
+                }//if s     
+            }//for loop s
+
+        })
+
+    }
+
+    // Initialize plot
+    update_2('AA'); update_2('US');
+
+</script>
+
+</html>
