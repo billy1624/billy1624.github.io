@@ -122,6 +122,8 @@
 					<p>A score is assigned to every airports in US indicating the efficiency of the airport, the score ranging from 0 to 100, the higher the better. The score is determined by the percentage of 30mins+ delay of the corresponding airport in 2015, counting the delay of both inbound and outbound flights. The airport having the lowest sum of inbound and outbound 30mins+ delay rate is scored hightest. The bubble on the map is fill will color indicating the corresponding efficiency score. You can click on the bubble to view the airport efficiency information and statistics.</p>
 				</div>
 			</div>
+		</div>
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-9">
 					<svg id="usa_map"></svg>
@@ -180,6 +182,8 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="container">
 			<br>
 			<br>
 			<br>
@@ -425,7 +429,9 @@
             .attr('class', 'tool-tip')
             .offset([-10, 0])
             .html(function (d) {
-                return "<b>" + d.name + "</b></br>" + d.municipality + ", " + d.iso_region;
+                return "<b>" + d.name + "</b>" + 
+						"</br>" + d.municipality + ", " + d.iso_region + 
+						"</br>Efficiency: " + d.efficiency_score + " / 100";
             })
         usa_map.call(tip);
 
