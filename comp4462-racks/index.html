@@ -135,7 +135,7 @@
 							<p>Click on the map to view airport details.</p>
 						</div>
 						<div class="card-body  airport-detail-body" style="display:none;">
-							<h5 class="card-title"><span id="airport-detail-name"></span></h5>
+							<h5 class="card-title"><b><span id="airport-detail-name"></span></b></h5>
 							<h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span>
 							</h6>
 							<h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
@@ -162,6 +162,10 @@
 										id="airport-detail-average_arr_delay"></span>mins<br></li>
 								<li class="list-group-item"><b>Average Departure Delay:</b> <span
 										id="airport-detail-average_dep_delay"></span>mins<br></li>
+								<li class="list-group-item"><b>30mins+ Arrival Delay:</b> <span
+										id="airport-detail-30mins_arr_delay"></span>mins<br></li>
+								<li class="list-group-item"><b>30mins+ Departure Delay:</b> <span
+										id="airport-detail-30mins_dep_delay"></span>mins<br></li>
 								<li class="list-group-item"><b>Cancellation Rate:</b> <span
 										id="airport-detail-cancellation_rate"></span>%<br></li>
 							</ul>
@@ -219,7 +223,7 @@
 			<br>
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="text-center">Flights of Large Airlines</h3>
+					<h3 class="text-center">Flights of Large Airports</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
 				</div>
 			</div>
@@ -338,16 +342,15 @@
         color: #fff;
         border-radius: 10px;
     }
-
-    .airport-detail {}
-
     .list-group-item {
-        padding: 5px;
+        padding: 2px;
     }
-
+	.airport-detail {
+		font-size: 14px;
+	}
     .card-header {
-        margin-top: 15px;
-        padding: 12px 5px;
+        padding: 5px 2px;
+		font-weight: bold;
     }
 
     body {
