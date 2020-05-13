@@ -2,8 +2,32 @@
 <html lang="en">
 
 <head>
-    <title>Aviation Effectiveness - COMP4462 Course Project</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<title>Aviation Effectiveness - COMP4462 Course Project</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/aos.css">
+
+	<link rel="stylesheet" href="css/ionicons.min.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/style.css">
+
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -14,194 +38,270 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Aviation Effectiveness</h2>
-                <h3 class="text-center">COMP4462 Data Visualization Course Project</h3>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">The Dataset</h3>
-                <p><a href="https://www.kaggle.com/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018">Airline Delay and Cancellation Data, 2009 - 2018</a>, this dataset tracked the on-time performance of domestic flights in the USA, we choose the year 2015 for analysis. The dataset includes information on the number of on-time, delayed, canceled, and diverted flights, etc.</p>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">The Project Objectives</h3>
-                <p class="text-center">1. Provide overview of aviation efficiency including airports and airlines.</p>
-                <p class="text-center">2. Visualize and summarize efficiency of airports.</p>
-                <p class="text-center">3. Visualize and summarize efficiency of airlines.</p>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">Data Processing</h3>
-                <p class="text-center">How we process the data?</p>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">The Airport Performance</h3>
-                <p>A score is assigned to every airports in US indicating the efficiency of the airport, the score ranging from 0 to 100, the higher the better. The score is determined by the percentage of 30mins+ delay of the corresponding airport in 2015, counting the delay of both inbound and outbound flights. The airport having the lowest sum of inbound and outbound 30mins+ delay rate is scored hightest. The bubble on the map is fill will color indicating the corresponding efficiency score. You can click on the bubble to view the airport efficiency information and statistics.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-9">
-                <svg id="usa_map"></svg>
-                <div id="legend1"></div>
-            </div>
-            <div class="col-md-3">
-                <div class="airport-detail card">
-                    <div class="card-body airport-detail-msg">
-                        <p>Click on the map to view airport details.</p>
-                    </div>
-                    <div class="card-body  airport-detail-body" style="display:none;">
-                        <h5 class="card-title"><span id="airport-detail-name"></span></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span>
-                        </h6>
-                        <h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
-                                id="airport-detail-efficiency_score"></span> / 100</h6>
-                        <div class="card-header"><b>Airport Info</b></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Iso Region:</b> <span
-                                    id="airport-detail-iso_region"></span><br></li>
-                            <li class="list-group-item"><b>Code:</b> <span id="airport-detail-code"></span><br></li>
-                            <li class="list-group-item"><b>Icao_code:</b> <span
-                                    id="airport-detail-icao_code"></span><br></li>
-                            <li class="list-group-item"><b>Elevation ft:</b> <span
-                                    id="airport-detail-elevation_ft"></span><br></li>
-                            <li class="list-group-item"><b>Lat:</b> <span id="airport-detail-lat"></span><br></li>
-                            <li class="list-group-item"><b>Lon:</b> <span id="airport-detail-lon"></span><br></li>
-                        </ul>
-                        <div class="card-header"><b>Flight Statistics</b></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Annual Number of Arrival:</b> <span
-                                    id="airport-detail-annual_dest"></span><br></li>
-                            <li class="list-group-item"><b>Annual Number of Departure:</b> <span
-                                    id="airport-detail-annual_origin"></span><br></li>
-                            <li class="list-group-item"><b>Average Arrival Delay:</b> <span
-                                    id="airport-detail-average_arr_delay"></span>mins<br></li>
-                            <li class="list-group-item"><b>Average Departure Delay:</b> <span
-                                    id="airport-detail-average_dep_delay"></span>mins<br></li>
-                            <li class="list-group-item"><b>Cancellation Rate:</b> <span
-                                    id="airport-detail-cancellation_rate"></span>%<br></li>
-                        </ul>
-                        <div class="card-header"><b>Cause of Delay</b></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Nas Delay:</b> <span
-                                    id="airport-detail-nas_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Security Delay:</b> <span
-                                    id="airport-detail-security_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Carrier Delay:</b> <span
-                                    id="airport-detail-carrier_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Late_aircraft Delay:</b> <span
-                                    id="airport-detail-late_aircraft_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Weather Delay:</b> <span
-                                    id="airport-detail-weather_delay"></span>%<br></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">The Large Airlines</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
-            </div>
-        </div>
-        <div class="row airline_bubble_table_bar">
-            <div class="col-md-12">
-                <div class="bubbleChart"></div>
-                <div class="row">
-                    <div class="col">
-                        <svg width="600" height="500" id="test"></svg>
-                    </div>
-                    <div class="col">
-                        <div style="position:relative; top:150px" id="airline_prob"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">Flights of Large Airlines</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <iframe src="d3sankey.html" id="d3sankey"></iframe>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">Quarterly Performance of Airlines</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
-            </div>
-        </div>
-        <div class="row airline_bar_chart">
-            <div class="col-md-12">
-                <!-- Add 2 buttons -->
-                <button onclick="update('q1_num')">Jan-Mar</button>
-                <button onclick="update('q2_num')">Apr-Jun</button>
-                <button onclick="update('q3_num')">Jul-Sep</button>
-                <button onclick="update('q4_num')">Oct-Dec</button>
 
-                <!-- Create a div where the graph will take place -->
-                <div id="Quarter_compare"></div>
-                hello hi
-                <button onclick="update_2('AA')">AA</button>
-                <button onclick="update_2('AS')">AS</button>
-                <button onclick="update_2('B6')">B6</button>
-                <button onclick="update_2('DL')">DL</button>
-                <button onclick="update_2('EV')">EV</button>
-                <button onclick="update_2('F9')">F9</button>
-                <button onclick="update_2('HA')">HA</button>
-                <button onclick="update_2('MQ')">MQ</button>
-                <button onclick="update_2('NK')">NK</button>
-                <button onclick="update_2('OO')">OO</button>
-                <button onclick="update_2('UA')">UA</button>
-                <button onclick="update_2('US')">US</button>
-                <button onclick="update_2('VX')">VX</button>
-                <button onclick="update_2('WN')">WN</button>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="sankey" class="sankeybox">
-                    <div class="d3-zoom-controls">
-                        <a data-zoom="+0.5" class="btn btn-circle"><span class="fa fa-plus"></span></a>
-                        <a data-zoom="-0.5" class="btn btn-circle"><span class="fa fa-minus"></span></a>
-                        <a data-zoom="0" class="btn btn-circle"><span class="fa fa-crosshairs"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" style="text-transform: initial;" href="index.html">ViroPonPon</a>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+	<section class="home-slider ftco-degree-bg">
+		<div class="slider-item">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row slider-text align-items-center justify-content-center">
+					<div class="col-md-10 ftco-animate text-center">
+						<h1 class="mb-4"><b>Aviation Effectiveness</b></h1>
+						<h1>COMP4462 Data Visualization Course Project</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- END slider -->
+
+	<section class="ftco-section-featured ftco-animate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Dataset</h3>
+					<p><a href="https://www.kaggle.com/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018">Airline Delay and Cancellation Data, 2009 - 2018</a>, this dataset tracked the on-time performance of domestic flights in the USA, we choose the year 2015 for analysis. The dataset includes information on the number of on-time, delayed, canceled, and diverted flights, etc.</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Project Objectives</h3>
+					<p class="text-center">1. Provide overview of aviation efficiency including airports and airlines.</p>
+					<p class="text-center">2. Visualize and summarize efficiency of airports.</p>
+					<p class="text-center">3. Visualize and summarize efficiency of airlines.</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Data Processing</h3>
+					<p class="text-center">How we process the data?</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Airport Performance</h3>
+					<p>A score is assigned to every airports in US indicating the efficiency of the airport, the score ranging from 0 to 100, the higher the better. The score is determined by the percentage of 30mins+ delay of the corresponding airport in 2015, counting the delay of both inbound and outbound flights. The airport having the lowest sum of inbound and outbound 30mins+ delay rate is scored hightest. The bubble on the map is fill will color indicating the corresponding efficiency score. You can click on the bubble to view the airport efficiency information and statistics.</p>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">
+					<svg id="usa_map"></svg>
+					<div id="legend1"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="airport-detail card">
+						<div class="card-body airport-detail-msg">
+							<p>Click on the map to view airport details.</p>
+						</div>
+						<div class="card-body  airport-detail-body" style="display:none;">
+							<h5 class="card-title"><b><span id="airport-detail-name"></span></b></h5>
+							<h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span>
+							</h6>
+							<h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
+									id="airport-detail-efficiency_score"></span> / 100</h6>
+							<div class="card-header"><b>Airport Info</b></div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"><b>Iso Region:</b> <span
+										id="airport-detail-iso_region"></span><br></li>
+								<li class="list-group-item"><b>Code:</b> <span id="airport-detail-code"></span><br></li>
+								<li class="list-group-item"><b>Icao_code:</b> <span
+										id="airport-detail-icao_code"></span><br></li>
+								<li class="list-group-item"><b>Elevation ft:</b> <span
+										id="airport-detail-elevation_ft"></span><br></li>
+								<li class="list-group-item"><b>Lat:</b> <span id="airport-detail-lat"></span><br></li>
+								<li class="list-group-item"><b>Lon:</b> <span id="airport-detail-lon"></span><br></li>
+							</ul>
+							<div class="card-header"><b>Flight Statistics</b></div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"><b>Annual Number of Arrival:</b> <span
+										id="airport-detail-annual_dest"></span><br></li>
+								<li class="list-group-item"><b>Annual Number of Departure:</b> <span
+										id="airport-detail-annual_origin"></span><br></li>
+								<li class="list-group-item"><b>Average Arrival Delay:</b> <span
+										id="airport-detail-average_arr_delay"></span>mins<br></li>
+								<li class="list-group-item"><b>Average Departure Delay:</b> <span
+										id="airport-detail-average_dep_delay"></span>mins<br></li>
+								<li class="list-group-item"><b>30mins+ Arrival Delay:</b> <span
+										id="airport-detail-30mins_arr_delay"></span>%<br></li>
+								<li class="list-group-item"><b>30mins+ Departure Delay:</b> <span
+										id="airport-detail-30mins_dep_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Cancellation Rate:</b> <span
+										id="airport-detail-cancellation_rate"></span>%<br></li>
+							</ul>
+							<div class="card-header"><b>Cause of Delay</b></div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"><b>Nas Delay:</b> <span
+										id="airport-detail-nas_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Security Delay:</b> <span
+										id="airport-detail-security_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Carrier Delay:</b> <span
+										id="airport-detail-carrier_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Late_aircraft Delay:</b> <span
+										id="airport-detail-late_aircraft_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Weather Delay:</b> <span
+										id="airport-detail-weather_delay"></span>%<br></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Large Airlines</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+				</div>
+			</div>
+			<div class="row airline_bubble_table_bar">
+				<div class="col-md-12">
+					<div class="bubbleChart"></div>
+					<div class="row">
+						<div class="col">
+							<svg width="600" height="500" id="test"></svg>
+						</div>
+						<div class="col">
+							<div style="position:relative; top:150px" id="airline_prob"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Flights of Large Airports</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<iframe src="d3sankey.html" id="d3sankey"></iframe>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Quarterly Performance of Airlines</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+				</div>
+			</div>
+			<div class="row airline_bar_chart">
+				<div class="col-md-12">
+					<!-- Add 2 buttons -->
+					<button onclick="update('q1_num')">Jan-Mar</button>
+					<button onclick="update('q2_num')">Apr-Jun</button>
+					<button onclick="update('q3_num')">Jul-Sep</button>
+					<button onclick="update('q4_num')">Oct-Dec</button>
+	
+					<!-- Create a div where the graph will take place -->
+					<div id="Quarter_compare"></div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+	</section>
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" /></svg></div>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+
 </body>
+
+<style>
+	p {
+		font-size: 1.3rem;
+	}
+	hr {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
 
 <style>
     .textCenter {
@@ -227,16 +327,15 @@
         color: #fff;
         border-radius: 10px;
     }
-
-    .airport-detail {}
-
     .list-group-item {
-        padding: 5px;
+        padding: 2px;
     }
-
+	.airport-detail {
+		font-size: 14px;
+	}
     .card-header {
-        margin-top: 15px;
-        padding: 12px 5px;
+        padding: 5px 2px;
+		font-weight: bold;
     }
 
     body {
@@ -318,7 +417,9 @@
             .attr('class', 'tool-tip')
             .offset([-10, 0])
             .html(function (d) {
-                return "<b>" + d.name + "</b></br>" + d.municipality + ", " + d.iso_region;
+                return "<b>" + d.name + "</b>" + 
+						"</br>" + d.municipality + ", " + d.iso_region + 
+						"</br>Efficiency: " + d.efficiency_score + " / 100";
             })
         usa_map.call(tip);
 
@@ -576,20 +677,20 @@
 
                     var HTML = "<table border=1 ><tr><th>Quarter</th><th>probability(%)</th></tr>";
                     HTML += " <tr><td>Jan - Mar delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q1_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q1_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
                     HTML += " <tr><td>Apr - Jun delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q2_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q2_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
                     HTML += " <tr><td>Jul - Sep delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q3_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q3_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
                     HTML += " <tr><td>Oct - Dec delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q4_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q4_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
 
                     HTML += " <tr><td>Total probability";
-                    HTML += "</td><td>" + Math.round((total_delay / total_flight) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((total_delay / total_flight) * 100 * 1000) / 1000 + "</td></tr>";
 
                     HTML += "</table>";
                     document.getElementById("airline_prob").innerHTML += HTML;

@@ -320,9 +320,8 @@
 				.center([width / 2, height / 2])
 				.on("zoom", zoomed);
 			
-		var formatNumber = d3.format(",.0f"),
-			format = function(d) { return formatNumber(d) + " $"; },
-			color = d3.scale.category20();
+	
+			//d3.scale.category20();
 		
 		svg = d3.select("#sankey").append("svg")
 			.attr("width", width + chartBox.left + margin.left + margin.right)
@@ -337,7 +336,51 @@
 			.nodeWidth(40)
 			.nodePadding(15)
 			.size([width, height]);
+					
+		
+			energy.nodes.forEach(function(node) {
+			  node.sourceLinks = [];
+			  node.targetLinks = [];
+			});
+			energy.links.forEach(function(link) {
+			  var source = link.source,
+				target = link.target;
+			  if (typeof source === "number") source = link.source = energy.nodes[link.source];
+			  if (typeof target === "number") target = link.target = energy.nodes[link.target];
+			  source.sourceLinks.push(link);
+			  target.targetLinks.push(link);
+			});
 
+			var tempNodes=[];
+			var tempLinks=[];
+			energy.nodes.forEach(function(node) {			
+			  node.value = Math.max(
+				d3.sum(node.sourceLinks, d => d.value),
+				d3.sum(node.targetLinks, d => d.value));
+				if(node.value >= 100000){
+					tempNodes.push(node);
+				}
+			});
+			energy.nodes = tempNodes;
+			
+			energy.links.forEach(function(link) {		
+	//			console.log(link);
+	//			alert("tempNodes.includes(link.source) && tempNodes.includes(link.target): " + tempNodes.includes(link.source) && tempNodes.includes(link.target)
+	//			+ "\nlink.source: " + link.source + "\nlink.target"+link.target);
+			  if(tempNodes.includes(link.source) && tempNodes.includes(link.target)){
+				tempLinks.push(link);
+			  }
+			});
+			energy.links = tempLinks;
+		
+			var formatNumber = d3.format(",.0f"),
+					format = function(d) { return formatNumber(d) + " $"; },
+					color = d3.scale.linear()
+					.domain([d3.min(energy.nodes, d=>d.value), d3.max(energy.nodes, d=>d.value)])
+					.range(["white", "green"]);
+			
+		
+		
 		var path = sankey.link();
 		  sankey
 			  .nodes(energy.nodes)
@@ -394,7 +437,7 @@
 			  .attr("width", sankey.nodeWidth())
 			  .style("fill", function(d) {
 				  if (d.color == undefined)
-					return d.color = color(d.name.replace(/ .*/, "")); //get new color if node.color is null
+					return d.color = color(d.value); //get new color if node.color is null
 				  return d.color;
 			  })
 			  .style("stroke", function(d) { return d3.rgb(d.color).darker(2); });
