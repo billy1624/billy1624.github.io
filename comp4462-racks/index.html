@@ -255,21 +255,6 @@
 	
 					<!-- Create a div where the graph will take place -->
 					<div id="Quarter_compare"></div>
-					hello hi
-					<button onclick="update_2('AA')">AA</button>
-					<button onclick="update_2('AS')">AS</button>
-					<button onclick="update_2('B6')">B6</button>
-					<button onclick="update_2('DL')">DL</button>
-					<button onclick="update_2('EV')">EV</button>
-					<button onclick="update_2('F9')">F9</button>
-					<button onclick="update_2('HA')">HA</button>
-					<button onclick="update_2('MQ')">MQ</button>
-					<button onclick="update_2('NK')">NK</button>
-					<button onclick="update_2('OO')">OO</button>
-					<button onclick="update_2('UA')">UA</button>
-					<button onclick="update_2('US')">US</button>
-					<button onclick="update_2('VX')">VX</button>
-					<button onclick="update_2('WN')">WN</button>
 				</div>
 			</div>
 			<br>
@@ -692,20 +677,20 @@
 
                     var HTML = "<table border=1 ><tr><th>Quarter</th><th>probability(%)</th></tr>";
                     HTML += " <tr><td>Jan - Mar delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q1_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q1_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
                     HTML += " <tr><td>Apr - Jun delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q2_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q2_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
                     HTML += " <tr><td>Jul - Sep delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q3_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q3_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
                     HTML += " <tr><td>Oct - Dec delay probability";
-                    HTML += "</td><td>" + Math.round((data[i].q4_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((data[i].q4_num) * 100  / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
 
                     HTML += " <tr><td>Total probability";
-                    HTML += "</td><td>" + Math.round((total_delay / total_flight) * 1000) / 1000 + "</td></tr>";
+                    HTML += "</td><td>" + Math.round((total_delay / total_flight) * 100 * 1000) / 1000 + "</td></tr>";
 
                     HTML += "</table>";
                     document.getElementById("airline_prob").innerHTML += HTML;
