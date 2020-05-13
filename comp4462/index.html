@@ -14,65 +14,77 @@
 
 <body>
     <div class="container-fuild">
-        <div class="row">
-            <div class="col-md-12">
-                <br>
+        <div class="textCenter">Airport effectiveness</div>
+        <div class="airport_map">
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-9">
-                <svg id="usa_map"></svg>
-                <div id="legend1"></div>
+            <div class="row">
+                <div class="col-md-9">
+                    <svg id="usa_map"></svg>
+                    <div id="legend1"></div>
+                </div>
+                <div class="col-md-3">
+                    <div class="airport-detail card">
+                        <div class="card-body airport-detail-msg">
+                            <p>Click on the map to view airport details.</p>
+                        </div>
+                        <div class="card-body  airport-detail-body" style="display:none;">
+                            <h5 class="card-title"><span id="airport-detail-name"></span></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span>
+                            </h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
+                                    id="airport-detail-efficiency_score"></span> / 100</h6>
+                            <div class="card-header"><b>Airport Info</b></div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Iso Region:</b> <span
+                                        id="airport-detail-iso_region"></span><br></li>
+                                <li class="list-group-item"><b>Code:</b> <span id="airport-detail-code"></span><br></li>
+                                <li class="list-group-item"><b>Icao_code:</b> <span
+                                        id="airport-detail-icao_code"></span><br></li>
+                                <li class="list-group-item"><b>Elevation ft:</b> <span
+                                        id="airport-detail-elevation_ft"></span><br></li>
+                                <li class="list-group-item"><b>Lat:</b> <span id="airport-detail-lat"></span><br></li>
+                                <li class="list-group-item"><b>Lon:</b> <span id="airport-detail-lon"></span><br></li>
+                            </ul>
+                            <div class="card-header"><b>Flight Statistics</b></div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Annual Number of Arrival:</b> <span
+                                        id="airport-detail-annual_dest"></span><br></li>
+                                <li class="list-group-item"><b>Annual Number of Departure:</b> <span
+                                        id="airport-detail-annual_origin"></span><br></li>
+                                <li class="list-group-item"><b>Average Arrival Delay:</b> <span
+                                        id="airport-detail-average_arr_delay"></span>mins<br></li>
+                                <li class="list-group-item"><b>Average Departure Delay:</b> <span
+                                        id="airport-detail-average_dep_delay"></span>mins<br></li>
+                                <li class="list-group-item"><b>Cancellation Rate:</b> <span
+                                        id="airport-detail-cancellation_rate"></span>%<br></li>
+                            </ul>
+                            <div class="card-header"><b>Cause of Delay</b></div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Nas Delay:</b> <span
+                                        id="airport-detail-nas_delay"></span>%<br></li>
+                                <li class="list-group-item"><b>Security Delay:</b> <span
+                                        id="airport-detail-security_delay"></span>%<br></li>
+                                <li class="list-group-item"><b>Carrier Delay:</b> <span
+                                        id="airport-detail-carrier_delay"></span>%<br></li>
+                                <li class="list-group-item"><b>Late_aircraft Delay:</b> <span
+                                        id="airport-detail-late_aircraft_delay"></span>%<br></li>
+                                <li class="list-group-item"><b>Weather Delay:</b> <span
+                                        id="airport-detail-weather_delay"></span>%<br></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <div class="airport-detail card">
-                    <div class="card-body airport-detail-msg">
-                        <p>Click on the map to view airport details.</p>
-                    </div>
-                    <div class="card-body  airport-detail-body" style="display:none;">
-                        <h5 class="card-title"><span id="airport-detail-name"></span></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span></h6>
-                        <h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
-                                id="airport-detail-efficiency_score"></span> / 100</h6>
-                        <div class="card-header"><b>Airport Info</b></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Iso Region:</b> <span
-                                    id="airport-detail-iso_region"></span><br></li>
-                            <li class="list-group-item"><b>Code:</b> <span id="airport-detail-code"></span><br></li>
-                            <li class="list-group-item"><b>Icao_code:</b> <span
-                                    id="airport-detail-icao_code"></span><br></li>
-                            <li class="list-group-item"><b>Elevation ft:</b> <span
-                                    id="airport-detail-elevation_ft"></span><br></li>
-                            <li class="list-group-item"><b>Lat:</b> <span id="airport-detail-lat"></span><br></li>
-                            <li class="list-group-item"><b>Lon:</b> <span id="airport-detail-lon"></span><br></li>
-                        </ul>
-                        <div class="card-header"><b>Flight Statistics</b></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Annual Number of Arrival:</b> <span
-                                    id="airport-detail-annual_dest"></span><br></li>
-                            <li class="list-group-item"><b>Annual Number of Departure:</b> <span
-                                    id="airport-detail-annual_origin"></span><br></li>
-                            <li class="list-group-item"><b>Average Arrival Delay:</b> <span
-                                    id="airport-detail-average_arr_delay"></span>mins<br></li>
-                            <li class="list-group-item"><b>Average Departure Delay:</b> <span
-                                    id="airport-detail-average_dep_delay"></span>mins<br></li>
-                            <li class="list-group-item"><b>Cancellation Rate:</b> <span
-                                    id="airport-detail-cancellation_rate"></span>%<br></li>
-                        </ul>
-                        <div class="card-header"><b>Cause of Delay</b></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Nas Delay:</b> <span
-                                    id="airport-detail-nas_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Security Delay:</b> <span
-                                    id="airport-detail-security_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Carrier Delay:</b> <span
-                                    id="airport-detail-carrier_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Late_aircraft Delay:</b> <span
-                                    id="airport-detail-late_aircraft_delay"></span>%<br></li>
-                            <li class="list-group-item"><b>Weather Delay:</b> <span
-                                    id="airport-detail-weather_delay"></span>%<br></li>
-                        </ul>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>
@@ -86,7 +98,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="bubbleChart"></div>
+                <iframe src="d3sankey.html" id="d3sankey"></iframe>
             </div>
         </div>
         <div class="row">
@@ -97,7 +109,28 @@
                 <br>
             </div>
         </div>
+        <div class="row airline_bubble_table_bar">
+            <div class="col-md-12">
+                <div class="bubbleChart"></div>
+                <div class="row">
+                    <div class="col">
+                        <svg width="600" height="500" id="test"></svg>
+                    </div>
+                    <div class="col">
+                        <div style="position:relative; top:150px" id="airline_prob"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
+            <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row airline_bar_chart">
             <div class="col-md-12">
                 <!-- Add 2 buttons -->
                 <button onclick="update('q1_num')">Jan-Mar</button>
@@ -122,9 +155,25 @@
                 <button onclick="update_2('US')">US</button>
                 <button onclick="update_2('VX')">VX</button>
                 <button onclick="update_2('WN')">WN</button>
-
-                <div id="airline_prob"></div>
-                <svg width="600" height="500" id="test"></svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="sankey" class="sankeybox">
+                    <div class="d3-zoom-controls">
+                        <a data-zoom="+0.5" class="btn btn-circle"><span class="fa fa-plus"></span></a>
+                        <a data-zoom="-0.5" class="btn btn-circle"><span class="fa fa-minus"></span></a>
+                        <a data-zoom="0" class="btn btn-circle"><span class="fa fa-crosshairs"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -139,6 +188,10 @@
 </body>
 
 <style>
+    .textCenter {
+        text-align: center;
+    }
+
     .mappath {
         stroke: #444444;
         stroke-width: 0.1rem;
@@ -179,6 +232,14 @@
     }
 </style>
 
+<style>
+    #d3sankey {
+        width: 100%;
+        height: 800px;
+        border: none;
+    }
+</style>
+
 <script>
     offsetX = 0;
     offsetY = 0;
@@ -191,7 +252,7 @@
     let usa_map = d3.select("#usa_map").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", offsetX + " " + offsetY + " " + mapWidth + " " + mapHeight)
 
     //draw map
-    let path = d3.geoPath().projection(projection);
+    let map_path = d3.geoPath().projection(projection);
 
     let pathgroup = usa_map.append("g").attr("id", "path");
 
@@ -200,7 +261,7 @@
             .data(json.features)
             .enter()
             .append("path")
-            .attr("d", path)
+            .attr("d", map_path)
             .attr("class", "mappath");
     });
 
@@ -497,7 +558,7 @@
 
                     document.getElementById("airline_prob").innerHTML = "AIRLINE: " + selectedVar + "<br>";
 
-                    var HTML = "<table border=1 width=100%><tr><th>Quarter</th><th>probability(%)</th></tr>";
+                    var HTML = "<table border=1 ><tr><th>Quarter</th><th>probability(%)</th></tr>";
                     HTML += " <tr><td>Jan - Mar delay probability";
                     HTML += "</td><td>" + Math.round((data[i].q1_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
 
@@ -517,7 +578,7 @@
                     HTML += "</table>";
                     document.getElementById("airline_prob").innerHTML += HTML;
 
-                }//if s     
+                }//if s
             }//for loop s
 
         })
@@ -525,8 +586,170 @@
     }
 
     // Initialize plot
-    update_2('AA'); update_2('US');
+    update_2('WN');
+    // update_2('US');
 
 </script>
+
+<style type="text/css">
+    svg text {
+        font-size: 14px;
+        stroke-width: 0;
+        fill: black;
+    }
+
+    /* html,
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    } */
+
+    .sankeybox {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+    }
+
+    .sankey .node text {
+        pointer-events: none;
+    }
+
+    .sankey .link {
+        fill: none;
+        stroke: #000;
+        stroke-opacity: .16;
+        transition-property: stroke-opacity;
+        transition-duration: 0.5s;
+    }
+
+    .sankey .link:hover {
+        stroke-opacity: .5;
+    }
+
+    h1,
+    h2,
+    h3 {
+        line-height: 12px !important;
+    }
+
+    .d3-tip h1 {
+        font-size: 14px;
+        padding: 0;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .d3-tip h2 {
+        font-weight: bold;
+        font-size: 12px;
+        padding-right: inherit;
+        padding-left: inherit;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 0px;
+    }
+
+    .d3-tip h3 {
+        font-weight: normal;
+        font-size: 8px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .d3-tip table {
+        font-weight: normal;
+        font-size: 12px;
+        padding: none;
+        margin: 0;
+        width: 100%;
+        border: none;
+        border-collapse: collapse;
+    }
+
+    .d3-tip td {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .d3-tip .col-left {
+        padding-right: 8px;
+    }
+
+    .d3-tip .table-wrapper {
+        margin: 0;
+        padding: inherit;
+        border: none;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: normal;
+        padding: 4px;
+        background: white;
+        color: black;
+        border-radius: 2px;
+        pointer-events: none;
+        background: white;
+        box-shadow: 1px 1px 4px grey;
+    }
+</style>
+
+<style>
+    .node rect {
+        cursor: move;
+        fill-opacity: .9;
+        shape-rendering: crispEdges;
+    }
+
+    .node text {
+        pointer-events: none;
+        text-shadow: 0px 0px 13px #fff;
+    }
+
+    .node:hover {
+        stroke-opacity: .2;
+    }
+
+    .link {
+        fill: none;
+        stroke: #000;
+        stroke-opacity: .16;
+        transition-property: stroke-opacity;
+        transition-duration: 0.5s;
+    }
+
+    .link:hover {
+        stroke-opacity: .5;
+    }
+</style>
+<style>
+    .d3-zoom-controls {
+        position: absolute;
+        left: 15px;
+        top: 10px;
+    }
+
+    .d3-zoom-controls .btn-circle {
+        width: 30px;
+        height: 30px;
+        align-items: center;
+        padding: 0px 0;
+        font-size: 18px;
+        line-height: 2.00;
+        display: grid;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.7);
+        color: gray;
+        margin-top: 10px;
+    }
+</style>
 
 </html>

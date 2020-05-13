@@ -1,5 +1,5 @@
 function renderBubbleChart() {
-    d3.csv("airline largeness.csv", function(raw_data) {
+    d3.csv("airline largeness.csv", function (raw_data) {
         const data = raw_data.map(d => ({id: d['ID'], name: d['OP_CARRIER'], value: d['SUM'], airline: d['AIRLINE']}))
         const json = {'children': data}
         const diameter = 600
@@ -31,7 +31,9 @@ function renderBubbleChart() {
             .style("font", "12px sans-serif")
 
         const handleBubbleOnClick = (d) => {
-            console.log('Bubble:', d)
+            console.log('Bubble:', d.data.name)
+            const op_carrier = d.data.name;
+            update_2(op_carrier)
         }
 
         const svg = d3.select('.bubbleChart').append('svg')
@@ -62,7 +64,7 @@ function renderBubbleChart() {
             .attr("r", function (d) {
                 return d.r;
             })
-            .attr("class", "circle")
+            .attr("class", "bubbleCircle")
             .style("fill", function (d) {
                 // console.log(color(d.data.id))
                 return color(d.data.id);
@@ -139,7 +141,7 @@ function renderBubbleChart() {
                 return `${d.name} : ${d.airline}`;
             })
             .on("mouseover", function (d) {
-                const circle = d3.selectAll('circle').filter((data) => data.data.name == d.name)
+                const circle = d3.selectAll('.bubbleCircle').filter((data) => data.data.name == d.name)
                 circle
                     .attr("r", (curCir) => {
                         return curCir.r + 2
@@ -148,7 +150,7 @@ function renderBubbleChart() {
             })
             .on("mouseout", function (d) {
                 d3.select(this)
-                const circle = d3.selectAll('circle').filter((data) => data.data.name == d.name)
+                const circle = d3.selectAll('.bubbleCircle').filter((data) => data.data.name == d.name);
                 circle
                     .attr("r", (curCir) => {
                         return curCir.r - 2
