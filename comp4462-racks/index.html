@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Aviation Effectiveness - COMP4462 Course Project</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/aos.css">
+
+	<link rel="stylesheet" href="css/ionicons.min.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/style.css">
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="tip.js"></script>
+    <script src="BubbleChart.js"></script>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" style="text-transform: initial;" href="index.html">ViroPonPon</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="solutions.html" class="nav-link">Solution</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Portfolio</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="portfolio.html">Portfolio</a>
+							<a class="dropdown-item" href="portfolio-single.html">Portfolio Single</a>
+						</div>
+					</li>
+					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+	<section class="home-slider ftco-degree-bg">
+		<div class="slider-item">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row slider-text align-items-center justify-content-center">
+					<div class="col-md-10 ftco-animate text-center">
+						<h1 class="mb-4">Aviation Effectiveness</h1>
+						<h1>COMP4462 Data Visualization Course Project</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- END slider -->
+
+	<section class="ftco-section-featured ftco-animate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Dataset</h3>
+					<p><a href="https://www.kaggle.com/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018">Airline Delay and Cancellation Data, 2009 - 2018</a>, this dataset tracked the on-time performance of domestic flights in the USA, we choose the year 2015 for analysis. The dataset includes information on the number of on-time, delayed, canceled, and diverted flights, etc.</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Project Objectives</h3>
+					<p class="text-center">1. Provide overview of aviation efficiency including airports and airlines.</p>
+					<p class="text-center">2. Visualize and summarize efficiency of airports.</p>
+					<p class="text-center">3. Visualize and summarize efficiency of airlines.</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Data Processing</h3>
+					<p class="text-center">How we process the data?</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Airport Performance</h3>
+					<p>A score is assigned to every airports in US indicating the efficiency of the airport, the score ranging from 0 to 100, the higher the better. The score is determined by the percentage of 30mins+ delay of the corresponding airport in 2015, counting the delay of both inbound and outbound flights. The airport having the lowest sum of inbound and outbound 30mins+ delay rate is scored hightest. The bubble on the map is fill will color indicating the corresponding efficiency score. You can click on the bubble to view the airport efficiency information and statistics.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-9">
+					<svg id="usa_map"></svg>
+					<div id="legend1"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="airport-detail card">
+						<div class="card-body airport-detail-msg">
+							<p>Click on the map to view airport details.</p>
+						</div>
+						<div class="card-body  airport-detail-body" style="display:none;">
+							<h5 class="card-title"><span id="airport-detail-name"></span></h5>
+							<h6 class="card-subtitle mb-2 text-muted"><span id="airport-detail-municipality"></span>
+							</h6>
+							<h6 class="card-subtitle mb-2 text-muted">Efficiency: <span
+									id="airport-detail-efficiency_score"></span> / 100</h6>
+							<div class="card-header"><b>Airport Info</b></div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"><b>Iso Region:</b> <span
+										id="airport-detail-iso_region"></span><br></li>
+								<li class="list-group-item"><b>Code:</b> <span id="airport-detail-code"></span><br></li>
+								<li class="list-group-item"><b>Icao_code:</b> <span
+										id="airport-detail-icao_code"></span><br></li>
+								<li class="list-group-item"><b>Elevation ft:</b> <span
+										id="airport-detail-elevation_ft"></span><br></li>
+								<li class="list-group-item"><b>Lat:</b> <span id="airport-detail-lat"></span><br></li>
+								<li class="list-group-item"><b>Lon:</b> <span id="airport-detail-lon"></span><br></li>
+							</ul>
+							<div class="card-header"><b>Flight Statistics</b></div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"><b>Annual Number of Arrival:</b> <span
+										id="airport-detail-annual_dest"></span><br></li>
+								<li class="list-group-item"><b>Annual Number of Departure:</b> <span
+										id="airport-detail-annual_origin"></span><br></li>
+								<li class="list-group-item"><b>Average Arrival Delay:</b> <span
+										id="airport-detail-average_arr_delay"></span>mins<br></li>
+								<li class="list-group-item"><b>Average Departure Delay:</b> <span
+										id="airport-detail-average_dep_delay"></span>mins<br></li>
+								<li class="list-group-item"><b>Cancellation Rate:</b> <span
+										id="airport-detail-cancellation_rate"></span>%<br></li>
+							</ul>
+							<div class="card-header"><b>Cause of Delay</b></div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"><b>Nas Delay:</b> <span
+										id="airport-detail-nas_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Security Delay:</b> <span
+										id="airport-detail-security_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Carrier Delay:</b> <span
+										id="airport-detail-carrier_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Late_aircraft Delay:</b> <span
+										id="airport-detail-late_aircraft_delay"></span>%<br></li>
+								<li class="list-group-item"><b>Weather Delay:</b> <span
+										id="airport-detail-weather_delay"></span>%<br></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">The Large Airlines</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+				</div>
+			</div>
+			<div class="row airline_bubble_table_bar">
+				<div class="col-md-12">
+					<div class="bubbleChart"></div>
+					<div class="row">
+						<div class="col">
+							<svg width="600" height="500" id="test"></svg>
+						</div>
+						<div class="col">
+							<div style="position:relative; top:150px" id="airline_prob"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Flights of Large Airlines</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<iframe src="d3sankey.html" id="d3sankey"></iframe>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Quarterly Performance of Airlines</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+				</div>
+			</div>
+			<div class="row airline_bar_chart">
+				<div class="col-md-12">
+					<!-- Add 2 buttons -->
+					<button onclick="update('q1_num')">Jan-Mar</button>
+					<button onclick="update('q2_num')">Apr-Jun</button>
+					<button onclick="update('q3_num')">Jul-Sep</button>
+					<button onclick="update('q4_num')">Oct-Dec</button>
+	
+					<!-- Create a div where the graph will take place -->
+					<div id="Quarter_compare"></div>
+					hello hi
+					<button onclick="update_2('AA')">AA</button>
+					<button onclick="update_2('AS')">AS</button>
+					<button onclick="update_2('B6')">B6</button>
+					<button onclick="update_2('DL')">DL</button>
+					<button onclick="update_2('EV')">EV</button>
+					<button onclick="update_2('F9')">F9</button>
+					<button onclick="update_2('HA')">HA</button>
+					<button onclick="update_2('MQ')">MQ</button>
+					<button onclick="update_2('NK')">NK</button>
+					<button onclick="update_2('OO')">OO</button>
+					<button onclick="update_2('UA')">UA</button>
+					<button onclick="update_2('US')">US</button>
+					<button onclick="update_2('VX')">VX</button>
+					<button onclick="update_2('WN')">WN</button>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="sankey" class="sankeybox">
+						<div class="d3-zoom-controls">
+							<a data-zoom="+0.5" class="btn btn-circle"><span class="fa fa-plus"></span></a>
+							<a data-zoom="-0.5" class="btn btn-circle"><span class="fa fa-minus"></span></a>
+							<a data-zoom="0" class="btn btn-circle"><span class="fa fa-crosshairs"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+	</section>
+
+	<!-- <section class="ftco-section-featured ftco-animate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel owl-carousel">
+						<div class="item">
+							<a href="portfolio.html">
+								<img src="images/dashboard_full_1.jpg" class="img-fluid" alt="">
+							</a>
+						</div>
+						<div class="item">
+							<a href="portfolio.html">
+								<img src="images/dashboard_full_2.jpg" class="img-fluid" alt="">
+							</a>
+						</div>
+						<div class="item">
+							<a href="portfolio.html">
+								<img src="images/dashboard_full_3.jpg" class="img-fluid" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="ftco-section ftco-degree-bg">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-5">
+				<div class="col-md-7 text-center heading-section ftco-animate">
+					<span class="subheading">Our Services</span>
+					<h2>Racks provides a fully featured text services platform!</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+					<div class="media block-6 services d-block text-center">
+						<div class="d-flex justify-content-center">
+							<div class="icon color-1 d-flex justify-content-center mb-3"><span
+									class="align-self-center icon-layers"></span></div>
+						</div>
+						<div class="media-body p-2">
+							<h3 class="heading">Unlimited Features</h3>
+							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+								unorthographic.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+					<div class="media block-6 services d-block text-center">
+						<div class="d-flex justify-content-center">
+							<div class="icon color-2 d-flex justify-content-center mb-3"><span
+									class="align-self-center icon-gears"></span></div>
+						</div>
+						<div class="media-body p-2">
+							<h3 class="heading">Multiple Functions</h3>
+							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+								unorthographic.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+					<div class="media block-6 services d-block text-center">
+						<div class="d-flex justify-content-center">
+							<div class="icon color-3 d-flex justify-content-center mb-3"><span
+									class="align-self-center icon-paper-plane"></span></div>
+						</div>
+						<div class="media-body p-2">
+							<h3 class="heading">Advanced Visualizations</h3>
+							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+								unorthographic.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+					<div class="media block-6 services d-block text-center">
+						<div class="d-flex justify-content-center">
+							<div class="icon color-4 d-flex justify-content-center mb-3"><span
+									class="align-self-center icon-live_help"></span></div>
+						</div>
+						<div class="media-body p-2">
+							<h3 class="heading">Community &amp; Supports</h3>
+							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+								unorthographic.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section-parallax ftco-degree-bg">
+		<div class="parallax-img d-flex align-items-center">
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-10 text-center heading-section heading-section-white ftco-animate">
+						<h2 class="h1 font-weight-bold">Turn every channel into a revenue channel and drive business
+							growth</h2>
+						<p><a href="#" class="btn btn-primary btn-outline-white mt-3 py-3 px-4">View more details</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section">
+		<div class="container-fluid">
+			<div class="row no-gutters justify-content-center mb-5 pb-5">
+				<div class="col-md-7 text-center heading-section ftco-animate">
+					<span class="subheading">Works</span>
+					<h2>Recent Works</h2>
+				</div>
+			</div>
+			<div class="row no-gutters">
+				<div class="block-3 d-md-flex ftco-animate">
+					<a href="portfolio.html" class="image" style="background-image: url('images/work-1.jpg'); "></a>
+					<div class="text">
+						<h4 class="subheading">Illustration</h4>
+						<h2 class="heading"><a href="portfolio.html">Even the all-powerful Pointing has no control</a>
+						</h2>
+						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+							unorthographic life
+							One day however a small line of blind text by the name of Lorem Ipsum decided to leave for
+							the far World
+							of Grammar.</p>
+					</div>
+				</div>
+				<div class="block-3 d-md-flex ftco-animate">
+					<a href="portfolio.html" class="image order-2"
+						style="background-image: url('images/work-2.jpg'); "></a>
+					<div class="text order-1">
+						<h4 class="subheading">Application</h4>
+						<h2 class="heading"><a href="portfolio.html">Even the all-powerful Pointing has no control</a>
+						</h2>
+						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+							unorthographic life
+							One day however a small line of blind text by the name of Lorem Ipsum decided to leave for
+							the far World
+							of Grammar.</p>
+					</div>
+				</div>
+				<div class="block-3 d-md-flex ftco-animate">
+					<a href="portfolio.html" class="image" style="background-image: url('images/work-3.jpg'); "></a>
+					<div class="text">
+						<h4 class="subheading">Web Design</h4>
+						<h2 class="heading"><a href="portfolio.html">Even the all-powerful Pointing has no control</a>
+						</h2>
+						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+							unorthographic life
+							One day however a small line of blind text by the name of Lorem Ipsum decided to leave for
+							the far World
+							of Grammar.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section testimony-section ftco-degree-bg">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-5">
+				<div class="col-md-7 text-center heading-section ftco-animate">
+					<span class="subheading">Customer Says</span>
+					<h2>Our satisfied customer says</h2>
+				</div>
+			</div>
+			<div class="row ftco-animate">
+				<div class="col-md-12">
+					<div class="carousel-testimony owl-carousel ftco-owl">
+						<div class="item text-center">
+							<div class="testimony-wrap p-4 pb-5">
+								<div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="icon-quote-left"></i>
+									</span>
+								</div>
+								<div class="text">
+									<p class="mb-5">Far far away, behind the word mountains, far from the countries
+										Vokalia and
+										Consonantia, there live the blind texts.</p>
+									<p class="name">Dennis Green</p>
+									<span class="position">Marketing Manager</span>
+								</div>
+							</div>
+						</div>
+						<div class="item text-center">
+							<div class="testimony-wrap p-4 pb-5">
+								<div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="icon-quote-left"></i>
+									</span>
+								</div>
+								<div class="text">
+									<p class="mb-5">Far far away, behind the word mountains, far from the countries
+										Vokalia and
+										Consonantia, there live the blind texts.</p>
+									<p class="name">Dennis Green</p>
+									<span class="position">Interface Designer</span>
+								</div>
+							</div>
+						</div>
+						<div class="item text-center">
+							<div class="testimony-wrap p-4 pb-5">
+								<div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="icon-quote-left"></i>
+									</span>
+								</div>
+								<div class="text">
+									<p class="mb-5">Far far away, behind the word mountains, far from the countries
+										Vokalia and
+										Consonantia, there live the blind texts.</p>
+									<p class="name">Dennis Green</p>
+									<span class="position">UI Designer</span>
+								</div>
+							</div>
+						</div>
+						<div class="item text-center">
+							<div class="testimony-wrap p-4 pb-5">
+								<div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="icon-quote-left"></i>
+									</span>
+								</div>
+								<div class="text">
+									<p class="mb-5">Far far away, behind the word mountains, far from the countries
+										Vokalia and
+										Consonantia, there live the blind texts.</p>
+									<p class="name">Dennis Green</p>
+									<span class="position">Web Developer</span>
+								</div>
+							</div>
+						</div>
+						<div class="item text-center">
+							<div class="testimony-wrap p-4 pb-5">
+								<div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="icon-quote-left"></i>
+									</span>
+								</div>
+								<div class="text">
+									<p class="mb-5">Far far away, behind the word mountains, far from the countries
+										Vokalia and
+										Consonantia, there live the blind texts.</p>
+									<p class="name">Dennis Green</p>
+									<span class="position">System Analytics</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-counter ftco-degree-bg" id="section-counter">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-5">
+				<div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+					<h2>Our achievements</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 text-center">
+						<div class="text">
+							<strong class="number" data-number="1000">0</strong>
+							<span>Customers are satisfied with our professional support</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 text-center">
+						<div class="text">
+							<strong class="number" data-number="12000">0</strong>
+							<span>Amazing preset options to be mixed and combined</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 text-center">
+						<div class="text">
+							<strong class="number" data-number="10000">0</strong>
+							<span>Average response time on live chat support channel</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-degree-bg">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-5">
+				<div class="col-md-7 text-center heading-section ftco-animate">
+					<span class="subheading">Blog</span>
+					<h2>Recent Blog</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 ftco-animate">
+					<div class="blog-entry">
+						<a href="blog-single.html" class="block-20"
+							style="background-image: url('images/image_1.jpg');">
+						</a>
+						<div class="text p-4 d-block">
+							<div class="meta mb-3">
+								<div><a href="#">July 12, 2018</a></div>
+								<div><a href="#">Admin</a></div>
+								<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+							</div>
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+									blind texts</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 ftco-animate">
+					<div class="blog-entry" data-aos-delay="100">
+						<a href="blog-single.html" class="block-20"
+							style="background-image: url('images/image_2.jpg');">
+						</a>
+						<div class="text p-4">
+							<div class="meta mb-3">
+								<div><a href="#">July 12, 2018</a></div>
+								<div><a href="#">Admin</a></div>
+								<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+							</div>
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+									blind texts</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 ftco-animate">
+					<div class="blog-entry" data-aos-delay="200">
+						<a href="blog-single.html" class="block-20"
+							style="background-image: url('images/image_3.jpg');">
+						</a>
+						<div class="text p-4">
+							<div class="meta mb-3">
+								<div><a href="#">July 12, 2018</a></div>
+								<div><a href="#">Admin</a></div>
+								<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+							</div>
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+									blind texts</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Company</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+							there live the
+							blind texts.</p>
+						<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+							<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Quick Links</h2>
+						<ul class="list-unstyled">
+							<li><a href="#" class="py-2 d-block">Home</a></li>
+							<li><a href="#" class="py-2 d-block">About</a></li>
+							<li><a href="#" class="py-2 d-block">Services</a></li>
+							<li><a href="#" class="py-2 d-block">Portfolio</a></li>
+							<li><a href="#" class="py-2 d-block">Contact</a></li>
+							<li><a href="#" class="py-2 d-block">Privacy</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Contact Information</h2>
+						<ul class="list-unstyled">
+							<li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a>
+							</li>
+							<li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
+							<li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>
+							<li><a href="#" class="py-2 d-block">email@email.com</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Newsletter</h2>
+						<p>Far far away, behind the word mountains, far from the countries.</p>
+						<form action="#" class="subscribe-form">
+							<div class="form-group">
+								<span class="icon icon-paper-plane"></span>
+								<input type="text" class="form-control" placeholder="Subscribe">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p>
+						Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+						is made with
+						<i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+							target="_blank">Colorlib</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer> -->
+
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" /></svg></div>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+<style>
+    .textCenter {
+        text-align: center;
+    }
+
+    .mappath {
+        stroke: #444444;
+        stroke-width: 0.1rem;
+        fill: #DDDDDD;
+        opacity: 0.2;
+    }
+
+    .spot {
+        /* fill: black; */
+        opacity: 0.5;
+    }
+
+    .tool-tip {
+        font-size: 12px;
+        padding: 6px;
+        background: black;
+        color: #fff;
+        border-radius: 10px;
+    }
+
+    .airport-detail {}
+
+    .list-group-item {
+        padding: 5px;
+    }
+
+    .card-header {
+        margin-top: 15px;
+        padding: 12px 5px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #legend1 {
+        text-align: center;
+    }
+</style>
+
+<style>
+    #d3sankey {
+        width: 100%;
+        height: 800px;
+        border: none;
+    }
+</style>
+
+<script>
+    offsetX = 0;
+    offsetY = 0;
+    mapWidth = 1600;
+    mapHeight = 1050;
+
+    projection = d3.geoAlbersUsa().translate([mapWidth / 2, mapHeight / 2]).scale([mapWidth * 1.28]);
+
+    //Set map to be responsive
+    let usa_map = d3.select("#usa_map").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", offsetX + " " + offsetY + " " + mapWidth + " " + mapHeight)
+
+    //draw map
+    let map_path = d3.geoPath().projection(projection);
+
+    let pathgroup = usa_map.append("g").attr("id", "path");
+
+    d3.json("us-states.json", function (json) {
+        pathgroup.selectAll("path")
+            .data(json.features)
+            .enter()
+            .append("path")
+            .attr("d", map_path)
+            .attr("class", "mappath");
+    });
+
+    let legendgroup = usa_map.append("g")
+        .attr("id", "maplegend")
+        .attr("transform", "translate(" + mapWidth * 0.9 + "," + mapHeight * 0.7 + ")");
+
+    var colors = d3.scaleLinear()
+        .domain([0, 100])
+        .range(["red", "green"]);
+
+    let linearSize = d3.scaleOrdinal().domain([""]).range([0]);
+
+    let legendSize = d3.legendSize()
+        .scale(linearSize)
+        .shape('circle')
+        .shapePadding(20)
+        .labelOffset(10)
+        .orient('vertical');
+
+    legendgroup.call(legendSize);
+
+    d3.csv("airport_data.csv", function (error, airports) {
+        airportsmap = {};
+
+        for (let i = 0; i < airports.length; i++) {
+            if (projection([airports[i].lon, airports[i].lat]) == null) {
+                airports.splice(i--, 1);
+            }
+            else {
+                airportsmap[airports[i].iata_code] = projection([airports[i].lon, airports[i].lat]);
+            }
+        }
+
+        let usa_map = d3.select("#usa_map");
+
+        let tip = d3.tip()
+            .attr('class', 'tool-tip')
+            .offset([-10, 0])
+            .html(function (d) {
+                return "<b>" + d.name + "</b></br>" + d.municipality + ", " + d.iso_region;
+            })
+        usa_map.call(tip);
+
+        usa_map.select("#spots").remove();
+        usa_map.select("#routes").remove();
+
+        let spotsGroup = usa_map.append("g").attr("id", "spots");
+        let spots = spotsGroup.selectAll("circle").data(airports);
+
+        spots.enter().append("circle")
+            .attr("cx", function (d) {
+                return projection([d.lon, d.lat])[0];
+            })
+            .attr("cy", function (d) {
+                return projection([d.lon, d.lat])[1];
+            })
+            .attr("r", function (d) {
+                return 10;
+            })
+            .attr("fill", function (d) {
+                return colors(d.efficiency_score);
+            })
+            .attr("class", "spot")
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide)
+            .on("click", function (d) {
+                // console.log(d);
+                $('span#airport-detail-name').text(d.name);
+                $('span#airport-detail-municipality').text(d.municipality);
+                $('span#airport-detail-efficiency_score').text(d.efficiency_score);
+                $('span#airport-detail-iso_region').text(d.iso_region);
+                $('span#airport-detail-code').text(d.code);
+                $('span#airport-detail-icao_code').text(d.icao_code);
+                $('span#airport-detail-elevation_ft').text(d.elevation_ft);
+                $('span#airport-detail-30mins_arr_delay').text(d['30mins_arr_delay']);
+                $('span#airport-detail-30mins_dep_delay').text(d['30mins_dep_delay']);
+                $('span#airport-detail-annual_dest').text(d.annual_dest);
+                $('span#airport-detail-annual_origin').text(d.annual_origin);
+                $('span#airport-detail-average_arr_delay').text(d.average_arr_delay);
+                $('span#airport-detail-average_dep_delay').text(d.average_dep_delay);
+                $('span#airport-detail-cancellation_rate ').text(d.cancellation_rate);
+                $('span#airport-detail-lat').text(d.lat);
+                $('span#airport-detail-lon').text(d.lon);
+                $('span#airport-detail-nas_delay').text(d.nas_delay);
+                $('span#airport-detail-security_delay').text(d.security_delay);
+                $('span#airport-detail-carrier_delay').text(d.carrier_delay);
+                $('span#airport-detail-late_aircraft_delay').text(d.late_aircraft_delay);
+                $('span#airport-detail-weather_delay').text(d.weather_delay);
+                $('div.airport-detail-msg').hide();
+                $('div.airport-detail-body').show();
+            });
+    });
+
+    var w = 500, h = 50;
+
+    var key = d3.select("#legend1")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    var legend = key.append("defs")
+        .append("svg:linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "0%")
+        .attr("y1", "100%")
+        .attr("x2", "100%")
+        .attr("y2", "100%")
+        .attr("spreadMethod", "pad");
+
+    legend.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "red")
+        .attr("stop-opacity", 1);
+
+    legend.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "green")
+        .attr("stop-opacity", 1);
+
+    key.append("rect")
+        .attr("width", w)
+        .attr("height", h - 30)
+        .style("fill", "url(#gradient)")
+        .attr("transform", "translate(0,10)");
+
+    var y = d3.scaleLinear()
+        .range([0, w])
+        .domain([0, 100]);
+
+    var yAxis = d3.axisBottom()
+        .scale(y)
+        .ticks(5);
+
+    key.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(0,30)")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("axis title");
+
+</script>
+
+<!--First Graph-->
+<script>
+    // set the dimensions and margins of the graph
+    var margin = { top: 30, right: 30, bottom: 70, left: 60 },
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#Quarter_compare")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Initialize the X axis
+    var x = d3.scaleBand()
+        .range([0, width])
+        .padding(0.2);
+    var xAxis = svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+
+    // Initialize the Y axis
+    var y = d3.scaleLinear()
+        .range([height, 0]);
+    var yAxis = svg.append("g")
+        .attr("class", "myYaxis")
+
+
+    // A function that create / update the plot for a given variable:
+    function update(selectedVar) {
+
+        // Parse the Data
+        d3.csv("flight_delay_in_q.csv", function (data) {
+
+            // X axis
+            x.domain(data.map(function (d) { return d.OP_CARRIER; }))
+            xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+            // Add Y axis
+            y.domain([0, d3.max(data, function (d) { return +d[selectedVar] })]);
+            yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+            // variable u: map data to existing bars
+            var u = svg.selectAll("rect")
+                .data(data)
+
+            // update bars
+            u
+                .enter()
+                .append("rect")
+                .merge(u)
+                .transition()
+                .duration(1000)
+                .attr("x", function (d) { return x(d.OP_CARRIER); })
+                .attr("y", function (d) { return y(d[selectedVar]); })
+                .attr("width", x.bandwidth())
+                .attr("height", function (d) { return height - y(d[selectedVar]); })
+                .attr("fill", "#69b3a2")
+        })
+
+    }
+
+    // Initialize plot
+    update('q1_num')
+
+</script>
+
+
+<!--Second Graph-->
+<script>
+
+    var svg_2 = d3.select("#test"),
+        margin_2 = 200,
+        width_2 = svg_2.attr("width") - margin_2,
+        height_2 = svg_2.attr("height") - margin_2;
+
+
+
+    var g_2 = svg_2.append("g")
+        .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+
+    var xScale = d3.scaleBand()
+        .domain(["Jan-Mar", "Apr-Jun", "Jul-Sep", "Oct-Dec"])
+        .range([0, width_2]);
+
+    var yScale = d3.scaleLinear()
+        .domain([0, 100000])
+        .range([height_2, 0]);
+
+
+
+    //create / update the plot for a given variable:
+    function update_2(selectedVar) {
+
+        // Parse the Data
+        // Initialize the X axis
+
+
+
+        d3.csv("flight_delay_in_q.csv", function (data) {
+
+            var i = data.length;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].OP_CARRIER == selectedVar) {
+                    console.log(data[i]);
+                    var total_flight = data[i].Total_flight;
+                    var total_delay = Number(data[i].q1_num) + Number(data[i].q2_num) + Number(data[i].q3_num) + Number(data[i].q3_num) + Number(data[i].q4_num);
+                    console.log(total_flight);
+                    var airline_data = [Number(data[i].q1_num), Number(data[i].q2_num), Number(data[i].q3_num), Number(data[i].q4_num)];
+                    var quar = ["Jan-Mar", "Apr-Jun", "Jul-Sep", "Oct-Dec"];
+                    console.log(airline_data);
+
+
+                    console.log("hihi");
+                    console.log(xScale("Apr-Jun"));
+
+
+
+                    g_2.append("g")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(d3.axisBottom(xScale));
+
+                    g_2.append("g")
+                        .call(d3.axisLeft(yScale).tickFormat(function (d) {
+                            return d;
+                        }).ticks(10));
+
+
+                    var u_2 = svg_2.selectAll("rect")
+                        .data(airline_data)
+
+                    // update bars
+                    u_2
+                        .enter().append("rect")
+                        .merge(u_2)
+                        .transition()
+                        .duration(1000)
+                        .attr("class", "bar")
+                        .attr("x", function (d, j) { return xScale(quar[j]) + 125; })
+                        .attr("y", function (d) { ; return yScale(d) + 100; })
+                        .attr("width", xScale.bandwidth() / 2)
+                        .attr("height", function (d) { return height_2 - yScale(d); })
+                        .attr("fill", "#69b3a2")
+
+                    document.getElementById("airline_prob").innerHTML = "AIRLINE: " + selectedVar + "<br>";
+
+                    var HTML = "<table border=1 ><tr><th>Quarter</th><th>probability(%)</th></tr>";
+                    HTML += " <tr><td>Jan - Mar delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q1_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += " <tr><td>Apr - Jun delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q2_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += " <tr><td>Jul - Sep delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q3_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += " <tr><td>Oct - Dec delay probability";
+                    HTML += "</td><td>" + Math.round((data[i].q4_num) / (total_flight / 4) * 1000) / 1000 + "</td></tr>";
+
+
+                    HTML += " <tr><td>Total probability";
+                    HTML += "</td><td>" + Math.round((total_delay / total_flight) * 1000) / 1000 + "</td></tr>";
+
+                    HTML += "</table>";
+                    document.getElementById("airline_prob").innerHTML += HTML;
+
+                }//if s
+            }//for loop s
+
+        })
+
+    }
+
+    // Initialize plot
+    update_2('WN');
+    // update_2('US');
+
+</script>
+
+</html>
