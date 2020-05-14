@@ -78,7 +78,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="text-center">The Dataset</h3>
-					<p><a href="https://www.kaggle.com/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018">Airline Delay and Cancellation Data, 2009 - 2018</a>, this dataset tracked the on-time performance of domestic flights in the USA, we choose the year 2015 for analysis. The dataset includes information on the number of on-time, delayed, canceled, and diverted flights, etc.</p>
+					<p><a href="https://www.kaggle.com/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018?select=2015.csv">2015 Flight Delays and Cancellations</a>, this dataset tracked the on-time performance of domestic flights in the USA, we choose the year 2015 for analysis. The dataset includes information on the number of on-time, delayed, canceled, and diverted flights, etc.</p>
 				</div>
 			</div>
 			<br>
@@ -106,7 +106,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="text-center">Data Processing</h3>
-					<p class="text-center">How we process the data?</p>
+					<p class="text-center">We preprocessed the data using Python Pandas, and visualize the processed data using D3.</p>
 				</div>
 			</div>
 			<br>
@@ -188,6 +188,24 @@
 			</div>
 		</div>
 		<div class="container">
+            <br>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center">Flights of Large Airports</h3>
+					<p>The diagram visualizes the airport effectiveness by filtering out the one without at least 100K departure or arrival flights. In the alluvial diagram, the airlines located at left will have a linking to the middle tier (source airport), meaning that the flight is departure from the middle node to the right tier (destination airport). The visualization enables user to zoom and hover the node or the linking to view the corresponding tooltip, providing the experience of “Overview First, Zoom and Filter, then Details-On-Demand”. It also applies size and color encoding, larger and deeper color the node it is, more flights it provide.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<iframe src="d3sankey.html" id="d3sankey"></iframe>
+				</div>
+			</div>
 			<br>
 			<br>
 			<br>
@@ -198,7 +216,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="text-center">The Large Airlines</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+					<p>The large airlines is represented by an overview and details on demand.
+                        For overview, the largeness of the airline is determined by the total number of flights. Bubble area encodes the largeness, bubble color encodes different airlines. Hover a bubble will show a tooltip which show the actual number of flights on the top of the chart. The legend on the right handside shows the airline names help user understand the chart more. Hover on a legend airine name will trigger animation to locate the corresponding bubble.
+                        For detail on demand, click a bubble will show more information about the airline. Quatile delay of the airline will show as a bar chart and table. The bar chart and the table will change responsively when the click target changed. The higher the probability, the more chance the airline had delay.</p>
 				</div>
 			</div>
 			<div class="row airline_bubble_table_bar">
@@ -223,35 +243,17 @@
 			<br>
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="text-center">Flights of Large Airports</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<iframe src="d3sankey.html" id="d3sankey"></iframe>
-				</div>
-			</div>
-			<br>
-			<br>
-			<br>
-			<hr>
-			<br>
-			<br>
-			<br>
-			<div class="row">
-				<div class="col-md-12">
 					<h3 class="text-center">Quarterly Performance of Airlines</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis at dolor in imperdiet. Vestibulum cursus sed nisi eu egestas. Suspendisse sagittis ac lectus a finibus. Sed feugiat lacus eu porta scelerisque. Sed sed efficitur est. Mauris at orci magna. Integer semper purus porttitor nisi accumsan, ac consequat tellus dapibus.</p>
+					<p>In order to compare the airline effectivenss, barchart is used to determine the total flight delay in 2015 for each airline in different quarter of the year. Therefore,user can overview and compare different airline by observing the flight delay trend.Therefore,they can know which airline company perform better during the period.It helps the customer to choose the best airline company in certain period of time.</p>
 				</div>
 			</div>
 			<div class="row airline_bar_chart">
 				<div class="col-md-12">
 					<!-- Add 2 buttons -->
-					<button onclick="update('q1_num')">Jan-Mar</button>
-					<button onclick="update('q2_num')">Apr-Jun</button>
-					<button onclick="update('q3_num')">Jul-Sep</button>
-					<button onclick="update('q4_num')">Oct-Dec</button>
+					<button class="btn btn-primary" onclick="update('q1_num')">Jan-Mar</button>
+					<button class="btn btn-primary" onclick="update('q2_num')">Apr-Jun</button>
+					<button class="btn btn-primary" onclick="update('q3_num')">Jul-Sep</button>
+					<button class="btn btn-primary" onclick="update('q4_num')">Oct-Dec</button>
 	
 					<!-- Create a div where the graph will take place -->
 					<div id="Quarter_compare"></div>
